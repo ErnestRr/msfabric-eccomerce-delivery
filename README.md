@@ -4,7 +4,7 @@ Este proyecto implementa una solución de **Ingeniería de Datos de extremo a ex
 
 ## 🎯 El Problema de Negocio (Business Case)
 Las organizaciones de E-commerce suelen operar con una visión parcial de su salud financiera debido a:
-* **Datos Fragmentados:** Información dispersa entre Shopify/Amazon, ERPs y operadores logísticos.
+* **Datos Fragmentados:** Información dispersa entre diversas plataformas de venta, ERPs y operadores logísticos.
 * **Inconsistencia de Tipos:** Datos numéricos que ingresan como texto (`String`), bloqueando cualquier análisis de agregación.
 * **Costos Ocultos:** Incapacidad de integrar devoluciones, comisiones de pasarelas y gastos de última milla en el cálculo del margen bruto y neto.
 
@@ -15,20 +15,24 @@ A diferencia del ETL tradicional, se ha implementado un flujo **ELT** (Extract, 
 
 <img width="1917" height="746" alt="image" src="https://github.com/user-attachments/assets/a274f752-a44e-4f56-b562-bbe40d112c74" />
 
-
 ### Capas del Lakehouse:
 1.  **Capa Bronze (Raw):** Ingesta de archivos CSV, Excel y conexiones SQL mediante **Data Factory Pipelines**. Los datos se mantienen en su formato original para auditoría.
 2.  **Capa Silver (Cleansed):** Procesamiento de datos con **Power Query Online**. 
     * **Solución al Reto Técnico:** Limpieza de símbolos de moneda y transformación de tipos `String` a `Decimal`.
     * Normalización de esquemas y eliminación de duplicados.
-3.  **Capa Gold (Curated):** Creación de un **Modelo en Estrella (Star Schema)**. Los datos se sirven mediante **Direct Lake**, permitiendo que Power BI consulte archivos Parquet sin necesidad de importar datos, garantizando latencia mínima.
+3.  **Capa Gold (Curated):** Creación de un **Modelo en Estrella (Star Schema)**. Los datos se sirven mediante **Direct Lake**, permitiendo que Power BI consulte archivos Parquet en OneLake sin necesidad de importar datos, garantizando latencia mínima.
 
-## 📈 Modelo de Datos Optimizado
-El diseño del modelo se creo utilizando una tabla de hechos de ventas y dimensiones de producto, tiempo, geografía y canales.
+## 📉 Modelo de Datos Optimizado
+El diseño del modelo se creó utilizando una tabla de hechos de ventas y dimensiones de producto, tiempo, geografía y canales.
 
 <img width="1893" height="862" alt="image" src="https://github.com/user-attachments/assets/427ef38f-2693-4fab-839a-964ebd3fb882" />
 
 > **Solución de Ingeniería:** Durante la transformación en la capa **Silver**, se implementó un script que utiliza funciones de reemplazo para caracteres no numéricos y un re-tipado forzado al esquema de datos. Esto aseguró que el motor de Power BI pudiera ejecutar medidas DAX de inteligencia de tiempo y cálculos de margen sin errores de compatibilidad.
+
+## 💡 Estrategia de Consumo y Optimización de Costos
+Para maximizar la eficiencia operativa y reducir costos de licenciamiento, el flujo de trabajo se diseñó de la siguiente manera:
+* **Modelo Semántico Centralizado:** Se publica el modelo optimizado en el servicio de Fabric.
+* **Consumo Local (Power BI Desktop):** Se utiliza la "maquinita" local para conectarse al **Modelo Semántico de Power BI** mediante Live Connection. Esto permite diseñar reportes avanzados sin requerir el procesamiento de la nube para cada cambio visual, optimizando el uso de capacidades Premium/Fabric y facilitando el desarrollo a usuarios con licencias limitadas.
 
 ## ⚙️ Tecnologías Utilizadas
 * **Microsoft Fabric:** Orquestación, Lakehouse y Gobernanza.
@@ -37,10 +41,24 @@ El diseño del modelo se creo utilizando una tabla de hechos de ventas y dimensi
 * **Power Query (M):** Motores de transformación para la limpieza de datos.
 * **n8n / Python:** Automatización de orquestación externa.
 
-Ver reporte 👉 https://app.powerbi.com/view?r=eyJrIjoiMzJiODdjNTAtYmZiNS00NTM0LWEwZTQtODg1ZGU3NzYwMWI1IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9
+Ver reporte interactivo 👉 [Dashboard de Rentabilidad](https://app.powerbi.com/view?r=eyJrIjoiMzJiODdjNTAtYmZiNS00NTM0LWEwZTQtODg1ZGU3NzYwMWI1IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9)
 
-<img width="1491" height="827" alt="image" src="https://github.com/user-attachments/assets/2297200e-4cac-4d55-bca6-d046c2e2beab" /> <img width="1508" height="822" alt="image" src="https://github.com/user-attachments/assets/f4dc5cc5-4e79-4b4d-bf64-17aeef9bc9aa" />
+<img width="1491" height="827" alt="image" src="https://github.com/user-attachments/assets/2297200e-4cac-4d55-bca6-d046c2e2beab" /> 
+<img width="1508" height="822" alt="image" src="https://github.com/user-attachments/assets/f4dc5cc5-4e79-4b4d-bf64-17aeef9bc9aa" />
 <img width="1493" height="841" alt="image" src="https://github.com/user-attachments/assets/0474aa6d-a7fe-4c5d-a14f-b5e88bf9be4a" />
 
+---
 
+## 🗺️ ¿En qué situaciones se podría implementar?
 
+Este tipo de canalización de datos (Modern ELT) es ideal para organizaciones que:
+
+* **Manejan volúmenes significativos de datos de ventas** que crecen continuamente y requieren procesamiento escalable.
+* **Necesitan realizar análisis de rentabilidad complejos** sobre datos históricos y actuales en tiempo real.
+* **Buscan una "fuente única de verdad"** para eliminar las discrepancias entre los reportes de finanzas, ventas y logística.
+* **Desean optimizar costos de licencia**, centralizando el modelo en Fabric y consumiéndolo localmente para el diseño de reportes.
+* **Quieren desacoplar las cargas de trabajo analíticas** de sus sistemas transaccionales para no afectar el rendimiento de la operación.
+* **Requieren un proceso de ingesta automatizado** que detecte y limpie errores de tipado de forma automática.
+
+---
+**Desarrollado por Ernesto Roldán** *BI Consultant & Data Engineer Specialist*
