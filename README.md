@@ -2,7 +2,7 @@
 
 Este proyecto implementa una solución de **Ingeniería de Datos de extremo a extremo** utilizando **Microsoft Fabric**. El objetivo principal es transformar datos transaccionales ruidosos en una arquitectura de **Lakehouse** optimizada para el cálculo de la rentabilidad real (Net Profit) y la eficiencia operativa mediante un enfoque de **Arquitectura Medallion**.
 
-##  El Problema de Negocio (Business Case)
+##  El Problema de Negocio
 Las organizaciones de E-commerce suelen operar con una visión parcial de su salud financiera debido a:
 * **Datos Fragmentados:** Información dispersa entre diversas plataformas de venta, ERPs y operadores logísticos.
 * **Inconsistencia de Tipos:** Datos numéricos que ingresan como texto (`String`), bloqueando cualquier análisis de agregación.
