@@ -41,6 +41,6 @@ El diseño del modelo se creo utilizando una tabla de hechos de ventas y dimensi
 <img width="1508" height="822" alt="image" src="https://github.com/user-attachments/assets/f4dc5cc5-4e79-4b4d-bf64-17aeef9bc9aa" />
 <img width="1493" height="841" alt="image" src="https://github.com/user-attachments/assets/0474aa6d-a7fe-4c5d-a14f-b5e88bf9be4a" />
 
-
+Ver reporte 👉 https://app.powerbi.com/view?r=eyJrIjoiMzJiODdjNTAtYmZiNS00NTM0LWEwZTQtODg1ZGU3NzYwMWI1IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9
 
 
