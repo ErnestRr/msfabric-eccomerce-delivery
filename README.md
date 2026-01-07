@@ -2,7 +2,9 @@
 
 Este proyecto **implementó** una solución de **Ingeniería de Datos de extremo a extremo** utilizando **Microsoft Fabric**. El objetivo principal fue transformar datos transaccionales ruidosos —alojados inicialmente en **Supabase (PostgreSQL)**— en una arquitectura de **Lakehouse** optimizada para el cálculo de la rentabilidad real (Net Profit) y la eficiencia operativa mediante un enfoque de **Arquitectura Medallion**.
 
-## 🎯 El Problema de Negocio (Business Case)
+<img width="907" height="714" alt="image" src="https://github.com/user-attachments/assets/26a7f5cb-40c0-4945-8532-75fcef23bfbc" />
+
+## 🎯 El Problema de Negocio
 Las organizaciones de E-commerce solían operar con una visión parcial de su salud financiera debido a:
 * **Datos Fragmentados:** Información dispersa entre diversas plataformas de venta, ERPs y operadores logísticos.
 * **Inconsistencia de Tipos:** Datos numéricos que ingresaban como texto (`String`), bloqueando cualquier análisis de agregación.
