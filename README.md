@@ -1,4 +1,4 @@
-# 📈 E-commerce Data Engineering: Microsoft Fabric Architecture
+# E-commerce Data Engineering: Microsoft Fabric Architecture
 
 > **Nota de Confidencialidad:**  
 > Este proyecto fue desarrollado para cliente de e-commerce bajo acuerdo 
@@ -178,8 +178,7 @@ Este tipo de arquitectura de datos (Modern ELT) es ideal para organizaciones que
 
 ---
 
-## 📧 Contacto
-
+## Elaborado por
 **Ernesto Roldán**  
 
 ---
