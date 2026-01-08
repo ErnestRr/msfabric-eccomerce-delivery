@@ -1,4 +1,10 @@
-# 📈 E-commerce Profitability & Data Engineering: Microsoft Fabric Architecture
+# 📈 E-commerce Data Engineering: Microsoft Fabric Architecture
+
+**Nota de Confidencialidad:**  
+> Este proyecto fue desarrollado para cliente de e-commerce bajo acuerdo 
+> de confidencialidad. Los datos, nombres y métricas específicas han sido 
+> anonimizados. La arquitectura técnica y metodología mostradas reflejan 
+> la implementación real.
 
 Este proyecto **implementó** una solución de **BI end to end** utilizando **Microsoft Fabric**. El objetivo principal fue transformar datos transaccionales dispersos —alojados en **Supabase (PostgreSQL)**— en una arquitectura de **Lakehouse** optimizada para el cálculo de la eficiencia operativa mediante un enfoque de **Arquitectura Medallion**.
 
