@@ -17,8 +17,10 @@ A diferencia del ETL tradicional, se **desarrolló** un flujo **ELT** (Extract, 
 
 ### Capas del Lakehouse:
 1.  **Capa Bronze (Raw data):** Se **realizó** la conexión SQL desde **Supabase** mediante **Notebooks**. Los datos se mantuvieron en su formato original.
+
 2.  **Capa Silver:** Los datos fueron procesados para asegurar la integridad de la información.
-        * Se normalizaron esquemas y se eliminaron registros duplicados.
+     * Se normalizaron esquemas y se eliminaron registros duplicados.
+     
 3.  **Capa Gold (Notebook %%sql):** Se **creó** un **Modelo en Estrella (Star Schema)** utilizando Notebooks con **Spark SQL**. Los datos se sirvieron mediante **Direct Lake**, permitiendo que Power BI consumiera los archivos Parquet en OneLake sin necesidad de importar datos, garantizando latencia mínima.
 
 ## Orquestación y Automatización (Data Factory)
